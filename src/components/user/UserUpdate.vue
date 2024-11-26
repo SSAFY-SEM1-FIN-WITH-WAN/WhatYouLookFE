@@ -90,10 +90,11 @@ onMounted(() => {
                         </div>
 
                         <!-- 수정 버튼 -->
-                        <div class="d-flex justify-content-end">
-                            <button class="btn btn-outline-success">수정</button>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- 수정 버튼 -->
+                            <button class="modify">수정</button>
+                            <button class="back" @click="backButton">뒤로</button>
                         </div>
-                        <button class="btn btn-secondary w-100" @click="backButton">뒤로</button>
                     </div>
                 </form>
             </div>
@@ -103,14 +104,36 @@ onMounted(() => {
 
 <style scoped>
 .card-title {
-    color: #08635d;
+    color: #101111;
     font-weight: bold;
 }
 
 .card-header {
     font-size: 1.25rem;
     font-weight: bold;
-    background-color: rgba(143, 255, 248, 0.6);
+    /* background-color: rgba(143, 255, 248, 0.6); */
+
+    --rg-gradient-a-25: linear-gradient(var(--rg-gradient-angle, 96deg), rgba(255, 148, 241, .25) 7.63%, rgba(151, 138, 255, .25) 37.94%, rgba(0, 210, 229, .25) 65.23%, rgba(143, 255, 248, .25) 92.12%);
+    --rg-gradient-a-pressed: linear-gradient(var(--rg-gradient-angle, 96deg), rgba(255, 148, 241, .5) 7.63%, rgba(151, 138, 255, .67) 37.94%, rgba(0, 210, 229, .83) 65.23%, #8ffff8 92.12%);
+    --rg-gradient-b-25: linear-gradient(var(--rg-gradient-angle, 96deg), rgba(255, 148, 241, .25) 7.63%, rgba(151, 138, 255, .25) 37.94%, rgba(0, 210, 229, .25) 65.23%, rgba(143, 255, 248, .25) 92.12%);
+    --rg-gradient-b-pressed: linear-gradient(var(--rg-gradient-angle, 96deg), rgba(255, 148, 241, .5) 7.63%, rgba(151, 138, 255, .67) 37.94%, rgba(0, 210, 229, .83) 65.23%, #8ffff8 92.12%);
+    --rg-gradient-c-25: linear-gradient(var(--rg-gradient-angle, 96deg), rgba(255, 148, 241, .25) 7.63%, rgba(151, 138, 255, .25) 37.94%, rgba(0, 210, 229, .25) 65.23%, rgba(143, 255, 248, .25) 92.12%);
+    --rg-gradient-c-pressed: linear-gradient(var(--rg-gradient-angle, 96deg), rgba(255, 148, 241, .5) 7.63%, rgba(151, 138, 255, .67) 37.94%, rgba(0, 210, 229, .83) 65.23%, #8ffff8 92.12%);
+    background: var(--rg-gradient-c-25);
+    transition: background 0.5s ease-in-out; /* 배경색 전환 시 부드럽게 변화하도록 설정 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자를 추가하여 깊이감 부여 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 좌우 정렬을 통해 로고와 메뉴가 양쪽 끝에 위치하도록 */
+    padding: 1rem; /* 적절한 여백 추가 */
+    padding-top: 25px;
+    margin: 0px;
+    border-radius: 3%;
+    position: sticky; /* 스크롤 시 상단에 고정 */
+    top: 0;
+    z-index: 1000; /* 다른 요소들 위에 배치 */
+    height: 50px; /* 고정된 높이 설정 */
+    opacity: 0.9; /* 불투명도를 약간 줄여 배경이 살짝 보이게 */
 }
 
 .custom-bg {
@@ -134,16 +157,30 @@ onMounted(() => {
     border-color: #007bff; /* 호버 시 border 색상 변경 */
 }
 
+.d-flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 /* 버튼 스타일 */
 button {
-    width: 100%;
+    width: 45%;
     padding: 0.5em;
     font-size: 1rem;
     border-radius: 5px;
+
+    border: 5px solid transparent; /* 기본적인 투명한 테두리 설정 */
+    border-image: linear-gradient(var(--rg-gradient-angle, 96deg), rgba(255, 148, 241, .25) 7.63%, rgba(151, 138, 255, .25) 37.94%, rgba(0, 210, 229, .25) 65.23%, rgba(143, 255, 248, .25) 92.12%) 1;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+    background: transparent;
+
+    font-weight: bold;
 }
 
-button.w-100 {
-    width: 100%;
+button:hover,
+button.btn:hover {
+    transform: scale(1.1); /* hover 시 크기를 1.1배로 확장 */
 }
 
 .form-floating label {
@@ -154,13 +191,6 @@ button.w-100 {
 /* Input 요소의 스타일 */
 .form-control {
     font-size: 1rem;
-}
-
-/* 뒤로가기 버튼 스타일 */
-button.btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-    font-weight: bold;
 }
 
 /* 레이아웃 수정 */
@@ -191,7 +221,4 @@ button.btn-secondary {
     margin-bottom: 0.5em; /* 수정-뒤로 버튼 사이 간격 좁히기 */
 }
 
-button.btn-secondary {
-    margin-top: 0.5em; /* 수정 버튼과 뒤로 버튼 사이 간격 */
-}
 </style>

@@ -259,12 +259,13 @@ onBeforeUnmount(() => {
 }
 
 .pagination .page-item .page-link {
-  color: #08635d;
-  border: 1px solid #08635d; /* 버튼 테두리 색상 */
+  color: rgb(0, 210, 229, 0.5);
+  border: 1px solid rgb(0, 210, 229); /* 버튼 테두리 색상 */
 }
 
 .pagination .page-item .page-link:hover {
-  background-color: rgba(143, 255, 248, 0.6); /* 호버 시 배경색 */
+  background-color: rgba(143, 255, 248); /* 호버 시 배경색 */
+  transform: scale(1.1);
   color: #fff; /* 텍스트 색상 흰색 */
 }
 
@@ -274,7 +275,7 @@ onBeforeUnmount(() => {
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #08635d; /* 활성화된 페이지 버튼 색상 */
+  background-color: rgb(0, 210, 229, .25); /* 활성화된 페이지 버튼 색상 */
   color: #fff; /* 활성화된 페이지의 텍스트 색상 */
 }
 
