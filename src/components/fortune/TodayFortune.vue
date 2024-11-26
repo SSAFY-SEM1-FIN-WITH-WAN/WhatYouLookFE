@@ -22,105 +22,105 @@ const currentDate = formatDate(new Date());
 </script>
 
 <template>
-  <div class="zodiac-container">
-    <h1 class="title">오늘의 운세</h1>
-    
-    <!-- 운세 카드 -->
-    <div class="card shadow-sm">
+  <div class="container">
+    <div class="card">
+
       <div class="card-header">
-        <p class="header-text">{{ currentDate }}</p>
+        <h1>{{ currentDate }}<br/>오늘의 운세</h1>
       </div>
+
       <div class="card-body">
-        <p class="fortune-intro">
-          {{ userStore.fortune.zodiacSign }}를 가지고 태어난 {{ userStore.loginUser.nickname }} 님<br>
-          오늘의 운세를 알려드리겠습니다
-        </p>
-        <p class="fortune-text">{{ userStore.fortune.content }}</p>
+        <div class="text-intro">
+          <h4><span>{{ userStore.fortune.zodiacSign }}</span>를 가지고 태어난 <span>{{ userStore.loginUser.nickname }}</span>님</h4>
+          <h5>오늘의 운세를 알려드리겠습니다</h5>
+        </div>
+        <div class="text-body">
+          <h4>{{ userStore.fortune.content }}</h4>
+        </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <style scoped>
-/* 전체 컨테이너 */
-.zodiac-container {
+@import url("https://fonts.googleapis.com/css?family=Sacramento|Vibur&display=swap");
+
+.container {
+  width: 100%;
+  min-height: 300px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  min-height: 75%;
-  background: linear-gradient(to bottom, #f0f8ff, #ffe4e1);
-  font-family: "Arial", sans-serif;
-  padding: 20px;
-  border-radius: 20px; /* 모서리를 둥글게 */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가로 입체감 */
+  align-items: center;
+  text-align: center;
+  font-family: 'Black Han Sans';
 }
 
-/* 제목 스타일 */
-.title {
-  font-size: 3rem;
-  color: #ff1493;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  text-shadow: 0 0 10px rgba(255, 20, 147, 0.7);
-  animation: sparkle 1.5s ease-in-out infinite;
-}
-
-/* 카드 스타일 */
 .card {
-  background-color: #fff;
+  position: relative;
+  box-sizing: border-box;
   padding: 20px;
-  border-radius: 10px;
+  background: #fff;
+  border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.55); /* 반투명 흰색 배경 */
+  backdrop-filter: blur(10px); /* 흐림 효과 */
   max-width: 600px;
   width: 100%;
-  text-align: center;
-  margin-top: 1rem;
 }
 
-/* 카드 헤더 스타일 */
-.card-header {
-  background: #ffebcd;
-  padding: 10px 15px;
-  border-radius: 8px 8px 0 0;
-}
-
-.header-text {
-  font-size: 1.2rem;
+.card-header h1 {
   font-weight: bold;
-  color: #8b0000;
-  margin: 0;
-}
+  animation: glowingText 1s infinite alternate;
 
-/* 카드 본문 스타일 */
-.card-body {
   padding: 20px;
+  border: 10px solid transparent; /* 기본적인 투명한 테두리 설정 */
+  border-image: linear-gradient(var(--rg-gradient-angle, 96deg), rgba(255, 148, 241, .25) 7.63%, rgba(151, 138, 255, .25) 37.94%, rgba(0, 210, 229, .25) 65.23%, rgba(143, 255, 248, .25) 92.12%) 1;
+  transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
 }
 
-.fortune-intro {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 15px;
+.text-intro {
+  padding: 5px;
+}
+
+.text-intro h4 {
   font-weight: bold;
 }
 
-.fortune-text {
-  font-size: 1.5rem;
-  color: #8b0000;
+.text-intro h5 {
   font-weight: bold;
-  animation: sparkle 1.5s ease-in-out infinite;
 }
 
-/* 반짝이는 텍스트 애니메이션 */
-@keyframes sparkle {
+.text-intro h4 span {
+  color: #e2601e;
+  font-weight: bold;
+}
+
+.text-body {
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.text-body h4 {
+  font-weight: bold;
+}
+
+@keyframes glowingText {
   0% {
-    text-shadow: 0 0 5px rgba(255, 20, 147, 0.8), 0 0 10px rgba(255, 20, 147, 0.6);
+    text-shadow: 0 0 3px rgba(255, 148, 241, 0), 0 0 5px rgba(255, 148, 241, 0), 0 0 8px rgba(255, 148, 241, 0);
+  }
+  25% {
+    text-shadow: 0 0 3px rgba(255, 148, 241, 0.25), 0 0 5px rgba(255, 148, 241, 0.25), 0 0 8px rgba(255, 148, 241, 0.25);
   }
   50% {
-    text-shadow: 0 0 20px rgba(255, 20, 147, 1), 0 0 30px rgba(255, 20, 147, 0.6);
+    text-shadow: 0 0 3px rgba(255, 148, 241, 0.5), 0 0 5px rgba(255, 148, 241, 0.5), 0 0 8px rgba(255, 148, 241, 0.5);
+  }
+  75% {
+    text-shadow: 0 0 3px rgba(255, 148, 241, 0.75), 0 0 5px rgba(255, 148, 241, 0.75), 0 0 8px rgba(255, 148, 241, 0.75);
   }
   100% {
-    text-shadow: 0 0 5px rgba(255, 20, 147, 0.8), 0 0 10px rgba(255, 20, 147, 0.6);
+    text-shadow: 0 0 3px rgba(255, 148, 241, 1), 0 0 5px rgba(255, 148, 241, 1), 0 0 8px rgba(255, 148, 241, 1);
   }
 }
 </style>

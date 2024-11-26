@@ -200,6 +200,8 @@ onMounted(() => {
   justify-content: flex-start;
   align-items: center;
   color: #6c757d; /* text-muted와 같은 색 */
+  padding-right: 20px;
+  border-right: 2px solid #6c757d;
 }
 
 .author-details {
